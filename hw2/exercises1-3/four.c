@@ -16,7 +16,7 @@ int main(void) {
 
 	int i, j;
 	for (i = 0; i <= 5; i = i + 1) {
-		// the inner loop runs 6 times with different i from outer loop
+		/* the inner loop runs 6 times with different i from outer loop */
 		for (j = 0; j <= 5; j = j + 1) {
 			printf ("i = %d, j = %d\n", i, j);
 		}

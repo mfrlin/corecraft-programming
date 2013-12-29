@@ -3,7 +3,7 @@
 void increment(int x);
 
 int main(void) {
-	// name x also displays scoping
+	/* name x also displays scoping */
 	int x = 100;
 	int n = 0;
 	increment(n);

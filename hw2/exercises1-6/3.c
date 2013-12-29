@@ -10,9 +10,9 @@ int main(void) {
 	}
 	int c;
 	while ((c = getchar()) != EOF) {
-		// if else doesn't do anything in this exercise
-		// and we can't use else because we have to check conditions for each case
-		// so the solution uses only if statements
+		/* if else doesn't do anything in this exercise
+		 * and we can't use else because we have to check conditions for each case
+		 * so the solution uses only if statements */
 		if ('a' <= c && c <= 'z') {
 			vowels[0] += 1;
 		}

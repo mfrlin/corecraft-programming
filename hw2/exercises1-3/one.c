@@ -12,6 +12,6 @@ int main(void) {
 	for (for_counter = 1; for_counter <= 100; ++for_counter) {
 		printf("%d\n", for_counter);
 	}
-	// for loop seems nicer
+	/* for loop seems nicer */
 	return 0;
 }
