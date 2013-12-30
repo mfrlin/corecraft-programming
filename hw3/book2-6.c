@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <limits.h>
 
 void print_binary(int x);
 int setbits(int x, int p, int n, int y);
