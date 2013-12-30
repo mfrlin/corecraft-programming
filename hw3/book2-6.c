@@ -12,14 +12,18 @@ int main(void) {
 
 int setbits(int x, int p, int n, int y) {
 	int mask = ~0; /* set mask to all 1s */
-	printf("%s\n", "Creating mask:");
+	printf("%s\n", "Creating mask for x:");
 	print_binary(mask);
-	/* mask should be in format: 11111...11100011 where p is 5 and n is 2 */
+	/* mask should be in format: 11111...11100111 where p is 5 and n is 2 */
 	mask = mask << p;
 	print_binary(mask);
-	mask = mask | ~(~0 << n);
+	mask = mask | ~(~0 << p-n);
 	print_binary(mask);
-	/* could have written mask = ~0 << p | ~(~0 << n); */
+	/* could have written mask = ~0 << p | ~(~0 << n-p); */
+
+	printf("%s\n", "Creating mask for y:");
+	int y_mask = ~(~0 << n);
+	print_binary(y_mask);
 	printf("%s\n", "Original x: ");
 	print_binary(x);
 	x &= mask;
@@ -27,10 +31,10 @@ int setbits(int x, int p, int n, int y) {
 	print_binary(x);
 	printf("%s\n", "Original y: ");
 	print_binary(y);
-	y &= ~mask;
+	y &= y_mask;
 	printf("%s\n", "Masked y: ");
 	print_binary(y);
-	x |= y;
+	x |= y << p-n;
 	printf("%s\n", "Changed x: ");
 	print_binary(x);
 
