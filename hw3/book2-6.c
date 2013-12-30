@@ -19,7 +19,7 @@ int setbits(int x, int p, int n, int y) {
 	print_binary(mask);
 	mask = mask | ~(~0 << p-n);
 	print_binary(mask);
-	/* could have written mask = ~0 << p | ~(~0 << n-p); */
+	/* could have written mask = ~0 << p | ~(~0 << p-n); */
 
 	printf("%s\n", "Creating mask for y:");
 	int y_mask = ~(~0 << n);
