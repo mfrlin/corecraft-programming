@@ -7,7 +7,7 @@ int main(void) {
 		for (b = LIMIT - c - 1, a = 1; b > a; b--, a++) {
 			if (a*a + b*b == c*c) {
 				printf("%d * %d * %d = %d\n", a, b, c, a*b*c);
-				break;
+				return 0;
 			}
 		}
 	}
