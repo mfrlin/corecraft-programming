@@ -11,7 +11,7 @@
 
 #include <stddef.h>
 
-/* TODO : figure out how much
+/* TODO: figure out how much
 you want your string to grow,
 try to keep a balance that assures
 not too many reallocs, but not
@@ -20,11 +20,12 @@ too much wasted memory */
 
 struct sstr { 
 	char *textp;
-	int len;
+	size_t len;
+	size_t size;
 };
 
 /*
-* creating and destroying :
+* creating and destroying:
 */
 
 /* empty shiro string */
@@ -36,6 +37,7 @@ struct sstr* ss_alloc_cstring(const char*);
 /* 	allocate a new shiro str that is a copy of
 	the parameter */
 struct sstr* ss_alloc_ss(const struct sstr*);
+
 /* free shiro string */
 void ss_free(struct sstr*);
 

@@ -4,9 +4,7 @@
 int main(void) {
 	struct sstr *a;
 	struct sstr *b;
-	b = ss_alloc();
-	printf("%s\n", b->textp);
-	/*
+
 	a = ss_alloc_cstring("The shiro string");
 
 	b = ss_alloc();
@@ -17,6 +15,9 @@ int main(void) {
 	ss_delete(a, 4, 6);
 
 	printf("%s\n", ss_cstring(a));
-	*/
+
+	ss_free(a);
+	ss_free(b);
+	
 	return 0;
 }
