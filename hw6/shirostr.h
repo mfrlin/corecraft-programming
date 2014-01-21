@@ -18,10 +18,10 @@ not too many reallocs, but not
 too much wasted memory */
 #define GROWTH_FACTOR 1.2
 
-struct sstr { 
-	char *textp;
-	size_t len;
-	size_t size;
+struct sstr {
+    char *textp;
+    size_t len;
+    size_t size;
 };
 
 /*
