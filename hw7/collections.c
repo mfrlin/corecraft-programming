@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "./collections.h"
+
+/*
+* Linked list
+*/
 
 struct ll_node {
     int data;
@@ -110,3 +115,108 @@ void ll_print(struct linked_list* ll) {
         printf("%p\n", node->prev);
     }
 }
+
+/*
+* Binary tree
+*/
+
+struct tree_node {
+    char* key;
+    char* phone_number;
+    struct tree_node* left_child;
+    struct tree_node* right_child;
+};
+
+struct tree_node* tree_node_alloc() {
+    struct tree_node* node = malloc(sizeof(struct tree_node));
+    if (node) {
+        node->left_child = NULL;
+        node->right_child = NULL;
+        return node;
+    } else {
+        printf("Error creating node!\n");
+        return 0;
+    }
+}
+
+struct bin_tree* tree_alloc() {
+    struct bin_tree* tree = malloc(sizeof(struct bin_tree));
+    if (tree) {
+        tree->max_depth = 0;
+        tree->num_elements = 0;
+        return tree;
+    } else {
+        printf("Error creating tree!\n");
+        return 0;
+    }
+}
+
+void tree_node_free(struct tree_node* node) {
+    free(node->key);
+    free(node->phone_number);
+    free(node);
+}
+
+int tree_insert(struct bin_tree* tree, char* key, char* phone_number) {
+    struct tree_node* new_node = tree_node_alloc();
+    if (!new_node) {
+        return 0;
+    }
+    int len = strlen(key);
+    char* buffer = malloc(sizeof(char) * (len+1));
+    strcpy(buffer, key);
+    new_node->key = buffer;
+    len = strlen(phone_number);
+    buffer = malloc(sizeof(char) * (len+1));
+    strcpy(buffer, phone_number);
+    new_node->phone_number = buffer;
+
+    if (tree->num_elements == 0) {
+        tree->root = new_node;
+        tree->num_elements = 1;
+        return 1;
+    }
+
+    struct tree_node* node = tree->root;
+    struct tree_node* insert_node = NULL;
+    int cmp;
+    while (node) {
+        cmp = strcmp(node->key, key);
+        if (cmp == 0) {
+            tree_node_free(new_node);
+            return 0;
+        } else if (cmp > 0) {
+            insert_node = node;
+            node = node->right_child;
+        } else {
+            insert_node = node;
+            node = node->left_child;
+        }
+    }
+    if (cmp > 0) {
+        insert_node->right_child = new_node;
+    } else {
+        insert_node->left_child = new_node;
+    }
+    tree->num_elements++;
+    return 1;
+}
+
+char* tree_search(struct bin_tree* tree, char* key) {
+    struct tree_node* node = tree->root;
+    while (node) {
+        printf("%s\n", node->key);
+        int cmp = strcmp(node->key, key);
+        if (cmp == 0) {
+            return node->phone_number;
+        } else if (cmp > 0) {
+            node = node->right_child;
+        } else {
+            node = node->left_child;
+        }
+    }
+    printf("No such key in a tree!\n");
+    return 0;
+}
+
+
